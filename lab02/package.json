@@ -1,0 +1,14 @@
+{
+  "name": "lab02",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "WEB5A": "node scripts/WEB5A/WEB5A.js",
+    "WEB5B": "node scripts/WEB5B/WEB5B.js",
+    "WEB5C": "node scripts/WEB5C/WEB5C.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

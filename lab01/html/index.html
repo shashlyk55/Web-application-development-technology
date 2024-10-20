@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Лаборвторная работа 1</h3>
+    <a href="http://www.belstu.by">BSTU</a>
+    <br>
+    <button id="btn">Browser info</button>
+
+</body>
+<script>
+    document.getElementById('btn').addEventListener('click', function(){
+        console.log('Hello world')
+        document.body.innerHTML += `<p>
+            appCodeName=${clientInformation.appCodeName}<br>
+            appName=${clientInformation.appName}<br>
+            appVerson=${clientInformation.appVersion}<br>
+            userAgent=${clientInformation.userAgent}
+            </p>`
+    })
+</script>
+</html>

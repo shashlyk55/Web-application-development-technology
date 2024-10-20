@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div>
+            <label>X</label>
+            <input type="text" id="x">
+        </div>
+        <div>
+            <label>Y</label>
+            <input type="text" id="y">
+        </div>
+        <div>
+            <label>Z: <span id="z"></span></label>
+        </div>
+        <button onclick="PostSum()">Get Z</button>
+    </div>
+
+    <div>
+        <label>N: </label>
+        <input type="text" id="num">
+    </div>
+    <button onclick="PostRandom()">Rand</button>
+    <div>
+        <span id="randArr"></span>
+    </div>
+</body>
+<script>
+    function PostSum(){
+        console.log(`POST: x:${x.value} y:${y.value}`)
+        const xhr = new XMLHttpRequest()
+
+        xhr.open('POST','http://localhost:5000/api/sum',true)
+        xhr.setRequestHeader('x-value-x', x.value)
+        xhr.setRequestHeader('x-value-y', y.value)
+        xhr.onload = () => {
+            if(xhr.status === 200){
+                z.innerText = xhr.getResponseHeader('x-value-z')
+            } else {
+                console.log('Error fetching data')
+            }
+        }
+        xhr.send()
+    }
+
+    function PostRandom(){
+        console.log(`POST: n:${num.value}`)
+        const xhr = new XMLHttpRequest()
+
+        xhr.open('POST', 'http://localhost:5000/api/random', true)
+        xhr.setRequestHeader('Content-Type','application/json')
+        xhr.setRequestHeader('x-rand-n', num.value)
+        xhr.onload = () => {
+            if(xhr.status === 200){
+                randArr.innerText = JSON.parse(xhr.response)
+            } else {
+                console.log('Error fetching data')
+            }
+        }
+        xhr.send()
+    }
+</script>
+</html>

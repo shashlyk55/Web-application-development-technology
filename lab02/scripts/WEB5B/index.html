@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label>N: </label>
+        <input type="text" id="num">
+    </div>
+    <button onclick="Post()">Rand</button>
+    <div>
+        <span id="randArr"></span>
+    </div>
+</body>
+<script>
+    function Post(){
+        console.log(`POST: n:${num.value}`)
+        fetch('http://localhost:5000/api', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type':'text/plain',
+                'Accept': 'application/json',
+                // при отправке запроса клиента регистр пользовательских заголовков становится нижним
+                'X-Rand-N': num.value,
+            }
+        })
+        .then((data) => {
+            return data.json()
+        })
+        .then((data) => {
+            randArr.innerText = data
+        })
+    }
+</script>
+</html>

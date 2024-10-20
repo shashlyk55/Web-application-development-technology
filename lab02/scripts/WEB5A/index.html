@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div>
+            <label>X</label>
+            <input type="text" id="x">
+        </div>
+        <div>
+            <label>Y</label>
+            <input type="text" id="y">
+        </div>
+        <div>
+            <label>Z: <span id="z"></span></label>
+        </div>
+        <button onclick="Post()">Get Z</button>
+    </div>
+</body>
+<script>
+    function Post(){
+        console.log(`POST: x:${x.value} y:${y.value}`)
+        fetch('http://localhost:5000/api', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type':'text/plain',
+                // при отправке запроса клиента регистр пользовательских заголовков становится нижним
+                'x-value-x': `${x.value}`,
+                'X-Value-Y': `${y.value}`
+            }
+        })
+        .then((response) => {
+            return response.headers.get('x-value-z')
+        })
+        .then((zValue) => {
+            z.innerText = zValue
+        })
+    }
+</script>
+</html>

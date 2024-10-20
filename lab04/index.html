@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="">x </label><input id="x" type="text"><br>
+    <label for="">y</label><input id="y" type="text"><br>
+    <button onclick="{doPost()}">post</button>
+
+    <p id="cookie"></p>
+</body>
+<script>
+    function doPost(){
+        console.log('sending data');
+        
+        fetch(`http://localhost:5000/api`, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                x: parseInt(x.value),
+                y: parseInt(y.value)
+            })
+        })
+        .then((response) => {
+            if(response.status !== 204){
+                return response.json()
+            }
+        })
+        .then((data) => {
+            if(data)
+                cookie.innerText += `sx:${data.sx} sy:${data.sy}\n`
+        })
+        .catch((err) => console.log(err))
+    }
+
+</script>
+</html>
