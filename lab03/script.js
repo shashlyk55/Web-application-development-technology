@@ -76,13 +76,13 @@ const server = http.createServer((req, res) => {
                 ])
 
                 // for postman tests
-                /*res.statusCode = 200
+                res.statusCode = 200
                     res.end(JSON.stringify({
                         sx: sumX,
                         sy: sumY
-                    }))*/
+                    }))
 
-                if(cookie_reqCount % 5 === 0){
+                /*if(cookie_reqCount % 5 === 0){
                     console.log('sending sum');
                     
                     res.statusCode = 200
@@ -93,7 +93,7 @@ const server = http.createServer((req, res) => {
                 } else {
                     res.statusCode = 204 // response is empty
                     res.end()
-                }
+                }*/
             }       
         })        
     }

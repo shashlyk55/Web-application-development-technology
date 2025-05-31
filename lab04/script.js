@@ -7,7 +7,6 @@ const crypto = require('crypto')
 const sessionStore = {}
 const generateSessionId = () => crypto.randomBytes(16).toString('hex')
 
-// Вспомогательная функция для извлечения cookie из заголовка запроса
 const parseCookies = (cookieHeader) => {
     return cookieHeader?.split(';').reduce((cookies, cookie) => {
       const [name, value] = cookie.trim().split('=');
@@ -83,24 +82,12 @@ const server = http.createServer((req, res) => {
                 res.setHeader('Content-Type', 'application/json')
                 res.setHeader('Set-Cookie', `sessionId=${sessionId}`)
 
-                // for tests postman
-                /*res.end(JSON.stringify({
-                    sx: x,
-                    sy: y
-                }))*/
-                
-                if(currentSession.reqCount % 5 === 0){
-                    console.log('sending sum');
-                    
-                    res.statusCode = 200
+                // for postman tests
+                res.statusCode = 200
                     res.end(JSON.stringify({
                         sx: x,
                         sy: y
                     }))
-                } else {
-                    res.statusCode = 204 // response is empty
-                    res.end()
-                }
             }       
         })        
     }

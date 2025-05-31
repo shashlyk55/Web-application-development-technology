@@ -1,0 +1,18 @@
+{
+  "name": "webdav_app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.7.8",
+    "webdav": "^5.7.1",
+    "xml2js": "^0.6.2"
+  },
+  "type": "module"
+}
